@@ -10,8 +10,11 @@ EXEC = screenbrightness
 # g++ main.cpp -o test `pkg-config --cflags --libs opencv`
 all: $(EXEC)
 
-$(EXEC): main.o
-	$(CC) main.o -o $(EXEC) $(CFLAGS) $(LIBS)
+$(EXEC): main.o Luminance.o
+	$(CC) main.o Luminance.o -o $(EXEC) $(CFLAGS) $(LIBS)
+
+Luminance.o: Luminance.cpp
+	$(CC) -c Luminance.cpp $(CFLAGS) $(LIBS)
 
 main.o: main.cpp
 	$(CC) -c main.cpp $(CFLAGS) $(LIBS)

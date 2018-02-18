@@ -25,6 +25,8 @@ int main(int argc, char** argv) {
     namedWindow("Captured Y", WINDOW_AUTOSIZE);
     imshow("Captured Y", luminanceImage);
 
+    cout << channelMean(luminanceImage) << endl;
+
     cap.release();
 
     waitKey(0);

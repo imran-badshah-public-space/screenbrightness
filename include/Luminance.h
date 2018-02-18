@@ -6,5 +6,6 @@
 using namespace cv;
 
 Mat Luminance(Mat &image);
+float channelMean(Mat &channel);
 
 #endif

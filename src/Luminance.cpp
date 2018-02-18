@@ -9,3 +9,7 @@ Mat Luminance(Mat &image) {
 
     return imageYUVSplit[0];
 }
+
+float channelMean(Mat &channel) {
+    return  mean(channel)[0];
+}

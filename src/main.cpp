@@ -19,8 +19,9 @@ int main(int argc, char** argv) {
     namedWindow("Captured", WINDOW_AUTOSIZE);
     imshow("Captured", image);
 
+    Mat* imagePtr = &image;
     // Luminance
-    Mat luminanceImage = Luminance(image);
+    Mat luminanceImage = Luminance(*imagePtr);
     namedWindow("Captured Y", WINDOW_AUTOSIZE);
     imshow("Captured Y", luminanceImage);
 

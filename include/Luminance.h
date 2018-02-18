@@ -5,6 +5,6 @@
 
 using namespace cv;
 
-Mat Luminance(Mat image);
+Mat Luminance(Mat &image);
 
 #endif

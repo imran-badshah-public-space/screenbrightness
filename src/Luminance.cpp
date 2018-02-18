@@ -1,6 +1,6 @@
 #include "Luminance.h"
 
-Mat Luminance(Mat image) {
+Mat Luminance(Mat &image) {
     // Luminance (Y or Lv,Ω) cd/m2
     Mat imageYUV;
     cvtColor(image, imageYUV, COLOR_RGB2YUV);

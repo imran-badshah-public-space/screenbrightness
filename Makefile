@@ -1,25 +1,38 @@
 
 # https://docs.opencv.org/2.4/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.html
+# https://youtu.be/dqflr7_TqQ8
+# https://stackoverflow.com/a/30602701
+
 CC = g++
 # CFLAGS = $(shell pkg-config --cflags opencv) #-Wall
 # LIBS = $(shell pkg-config --libs opencv)
-CFLAGS = `pkg-config --cflags opencv` #-Wall
-LIBS = `pkg-config --libs opencv`
-EXEC = screenbrightness
+CFLAGS := `pkg-config --cflags opencv` -I $(INC_DIR)#-Wall
+LIBS := `pkg-config --libs opencv`
+EXEC := screenbrightness
+
+SRC_DIR := src
+INC_DIR := include
+BIN_DIR := bin
+
+SRC := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
 
 # g++ main.cpp -o test `pkg-config --cflags --libs opencv`
-all: $(EXEC)
+all: $(BIN_DIR)/$(EXEC)
 
-$(EXEC): main.o Luminance.o
-	$(CC) main.o Luminance.o -o $(EXEC) $(CFLAGS) $(LIBS)
+$(BIN_DIR)/$(EXEC): $(OBJ)
+	$(CC) -o $@ $^  $(CFLAGS) $(LIBS)
 
-Luminance.o: Luminance.cpp
-	$(CC) -c Luminance.cpp $(CFLAGS) $(LIBS)
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CC) -c $< -o $@ $(CFLAGS) $(LIBS)
 
-main.o: main.cpp
-	$(CC) -c main.cpp $(CFLAGS) $(LIBS)
+help:
+	@echo "src: $(SRC)"
+	@echo "obj: $(OBJ)"
+	@echo "bin: $(BIN_DIR)/$(EXEC)"
 
 clean:
-	rm -rf *.o test screenbrightness
+	@rm -rf $(BIN_DIR)/*
+	@echo "Cleaned $(BIN_DIR)/*"
 
 

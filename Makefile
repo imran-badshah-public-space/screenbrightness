@@ -6,13 +6,13 @@
 CC = g++
 # CFLAGS = $(shell pkg-config --cflags opencv) #-Wall
 # LIBS = $(shell pkg-config --libs opencv)
+SRC_DIR := src
+BIN_DIR := bin
+INC_DIR := include
+
 CFLAGS := `pkg-config --cflags opencv` -I $(INC_DIR)#-Wall
 LIBS := `pkg-config --libs opencv`
 EXEC := screenbrightness
-
-SRC_DIR := src
-INC_DIR := include
-BIN_DIR := bin
 
 SRC := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)

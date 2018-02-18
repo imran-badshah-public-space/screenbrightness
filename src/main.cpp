@@ -1,14 +1,13 @@
 #include <iostream>
 
 #include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/core/core.hpp> // Basic OpenCV strucs (e.g. `Mat`)
-#include <opencv2/videoio/videoio.hpp> // Video write
+// #include <opencv2/imgproc/imgproc.hpp>
+// #include <opencv2/core/core.hpp> // Basic OpenCV strucs (e.g. `Mat`)
+// #include <opencv2/videoio/videoio.hpp> // Video write
 
-using namespace cv;
+#include "Luminance.h"
+
 using namespace std;
-
-Mat Luminance(Mat image);
 
 int main(int argc, char** argv) {
     Mat image;

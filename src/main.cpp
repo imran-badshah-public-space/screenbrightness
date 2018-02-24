@@ -7,6 +7,7 @@
 // #include <opencv2/videoio/videoio.hpp> // Video write
 
 #include "Luminance.h"
+#include "ScreenShot.h"
 
 using namespace std;
 
@@ -33,6 +34,13 @@ int main(int argc, char** argv) {
     // TO-DO: Let user be prompted to input (set) brightness
     system("src/adjustScreenBrightness.sh 0.8");
     cap.release();
+
+    // Take screenshot
+    ScreenShot screen(0, 0, 1920, 1080);
+    Mat screenshot;
+    screen(screenshot);
+    namedWindow("Captured Y", WINDOW_AUTOSIZE);
+    imshow("screenshot", screenshot);
 
     waitKey(0);
 

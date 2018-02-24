@@ -10,8 +10,8 @@ SRC_DIR := src
 BIN_DIR := bin
 INC_DIR := include
 
-CFLAGS := `pkg-config --cflags opencv` -I $(INC_DIR)#-Wall
-LIBS := `pkg-config --libs opencv`
+CFLAGS := -Wcpp -std=c++11 `pkg-config --cflags opencv` -I$(INC_DIR)#-Wall
+LIBS := -lX11 -lXext -Ofast -mfpmath=both -march=native -m64 -funroll-loops -mavx2 `pkg-config --libs opencv`
 EXEC := screenbrightness
 
 SRC := $(wildcard $(SRC_DIR)/*.cpp)
@@ -21,7 +21,7 @@ OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
 all: $(BIN_DIR)/$(EXEC)
 
 $(BIN_DIR)/$(EXEC): $(OBJ)
-	$(CC) -o $@ $^  $(CFLAGS) $(LIBS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CC) -c $< -o $@ $(CFLAGS) $(LIBS)
@@ -30,6 +30,8 @@ help:
 	@echo "src: $(SRC)"
 	@echo "obj: $(OBJ)"
 	@echo "bin: $(BIN_DIR)/$(EXEC)"
+	@echo "CFLAGS: $(CFLAGS)"
+	@echo "LIBS: $(LIBS)"
 
 clean:
 	@rm -rf $(BIN_DIR)/*

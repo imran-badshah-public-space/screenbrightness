@@ -11,6 +11,8 @@ else
     watchEvery=10
 fi
 
+# Make on first exec
+make
 # Monitor changes or file creations based on time interval
 inotifywait -e create,modify --exclude '.*\.swp|.*\.git' -rmq . |
 while read

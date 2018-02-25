@@ -1,6 +1,7 @@
 // https://stackoverflow.com/a/39781697
 // https://www.youtube.com/watch?v=qGxuD9o4GDA
 // https://stackoverflow.com/a/14348924
+// http://www.cplusplus.com/forum/unices/108795/
 
 #ifndef SCREENSHOT_H
 #define SCREENSHOT_H

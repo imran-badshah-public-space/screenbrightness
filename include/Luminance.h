@@ -5,7 +5,8 @@
 
 using namespace cv;
 
-Mat Luminance(Mat &image);
-float channelMean(Mat &channel);
+Mat Luminance(Mat *image);
+float channelMean(Mat *channel);
+float meanLuminance(Mat *image, const Size *finalResolution);
 
 #endif

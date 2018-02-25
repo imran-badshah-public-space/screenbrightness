@@ -10,10 +10,9 @@
 #include "ScreenShot.h"
 
 using namespace std;
+extern const Size downscaleResolution(256, 256);
 
 int main(int argc, char** argv) {
-
-    const Size finalResolution(256, 256);
 
     Mat image;
     VideoCapture cap(0);
@@ -21,19 +20,13 @@ int main(int argc, char** argv) {
         cout << "Cannot detect camera.";
     }
     cap >> image;
-    resize(image, image, finalResolution); //resize image
     namedWindow("Captured", WINDOW_AUTOSIZE);
     imshow("Captured", image);
 
-    Mat* imagePtr = &image;
+    cout << meanLuminance(&image, &downscaleResolution) << endl;
     // Luminance
-    Mat luminanceImage = Luminance(*imagePtr);
     namedWindow("Captured Y", WINDOW_AUTOSIZE);
-    imshow("Captured Y", luminanceImage);
-
-
-
-    cout << channelMean(luminanceImage) << endl;
+    imshow("Captured Y", image);
 
     // Hard-coded to try out bash script
     // TO-DO: Find out max luminance and set ratio for now
@@ -46,17 +39,13 @@ int main(int argc, char** argv) {
     Mat screenshot;
     screen(screenshot);
     // Resize to standard down-scaled resolution
-    resize(screenshot, screenshot, finalResolution); //resize image
-    namedWindow("Captured Y", WINDOW_AUTOSIZE);
+    namedWindow("screenshot", WINDOW_AUTOSIZE);
     imshow("screenshot", screenshot);
 
     // Luminance
-    Mat screenshotLuminanceImage = Luminance(screenshot);
+    cout << meanLuminance(&screenshot, &downscaleResolution) << endl;
     namedWindow("screenshot Luminance Y", WINDOW_AUTOSIZE);
-    imshow("screenshot Luminance Y", screenshotLuminanceImage);
-
-    cout << channelMean(screenshotLuminanceImage) << endl;
-
+    imshow("screenshot Luminance Y", screenshot);
 
     waitKey(0);
 
